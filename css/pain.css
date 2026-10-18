@@ -1,0 +1,94 @@
+/* סלול ניהול נכסים: סקשן "הכאב". טקסט מימין, ומשמאל ממשק טלפון מונפש: שיחה נכנסת, שיחות שלא נענו, הודעה מהשוכרת והתראה על שכירות. */
+.kicker { display: inline-flex; margin: 0 0 var(--gap-md); padding: 6px 16px; border-radius: var(--radius-pill); background: var(--teal); color: var(--white); font-size: var(--note); font-weight: 600; }
+
+/* רקע כחול כהה במסגרת מעוגלת, באותו ריווח צד כמו מסגרת הסרטון במסך הפתיחה */
+.pain { --pain-inset: 12px; padding: var(--section-gap-related) var(--pain-inset) calc(var(--section-gap) / 2); }
+@media (min-width: 1025px) { .pain { --pain-inset: 16px; } }
+.pain__inner { display: grid; gap: 48px; align-items: center; padding: calc(var(--section-gap) / 2) max(20px, calc(var(--side-pad) - var(--pain-inset))); border-radius: 12px; background: var(--navy); color: var(--white); }
+.pain .kicker { background: var(--teal); color: var(--white); }
+@media (min-width: 1025px) { .pain__inner { grid-template-columns: 1.15fr 1fr; gap: 5vw; } }
+
+.pain__text { max-width: 680px; }
+.pain__title { margin: 0 0 24px; font-size: var(--h4); font-weight: 700; line-height: 1.15; color: var(--white); text-wrap: balance; }
+.pain__title span { display: block; }
+.pain__text p:not(.kicker) { margin: 0 0 16px; }
+.pain__text p:last-child { margin-bottom: 0; }
+
+/* ---------- הטלפון ---------- */
+.pain__visual { display: grid; place-items: center; padding: 8px 0; }
+
+.phone {
+  position: relative; width: 300px; aspect-ratio: 300 / 620; padding: 11px;
+  border-radius: 52px; background: #0B0D12;
+  box-shadow: inset 0 0 0 2px #2C313C, 0 40px 80px -24px rgba(0, 0, 0, .6);
+}
+.phone::before, .phone::after { content: ""; position: absolute; width: 3px; border-radius: 3px; background: #2C313C; }
+.phone::before { left: -3px; top: 120px; height: 64px; }
+.phone::after { right: -3px; top: 150px; height: 90px; }
+
+.phone__screen { position: relative; height: 100%; overflow: hidden; border-radius: 42px; background: #111; color: var(--white); }
+.phone__wall { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; }
+.phone__status, .phone__date, .phone__clock { text-shadow: 0 1px 12px rgba(0, 0, 0, .3); }
+
+.phone__status { position: absolute; z-index: 4; top: 15px; inset-inline: 30px; display: flex; justify-content: space-between; align-items: center; font-size: 14px; font-weight: 600; }
+.phone__sys { display: flex; align-items: center; gap: 6px; }
+.phone__bars { display: flex; align-items: flex-end; gap: 2px; height: 10px; }
+.phone__bars b { width: 3px; border-radius: 1px; background: var(--white); }
+.phone__bars b:nth-child(1) { height: 4px; } .phone__bars b:nth-child(2) { height: 6px; } .phone__bars b:nth-child(3) { height: 8px; } .phone__bars b:nth-child(4) { height: 10px; }
+.phone__batt { position: relative; width: 22px; height: 11px; border: 1.5px solid rgba(255, 255, 255, .8); border-radius: 3px; }
+.phone__batt::after { content: ""; position: absolute; inset: 1.5px; right: auto; width: 60%; border-radius: 1px; background: var(--white); }
+.phone__island { position: absolute; z-index: 5; top: 10px; left: 50%; width: 92px; height: 27px; border-radius: 20px; background: #000; transform: translateX(-50%); }
+
+/* מסך נעילה עם התראות */
+.phone__lock { position: absolute; inset: 0; z-index: 2; padding: 62px 10px 16px; text-align: center; }
+.phone__date { margin: 0; font-size: 14px; font-weight: 600; opacity: .9; }
+.phone__clock { margin: 0 0 18px; font-size: 64px; font-weight: 600; line-height: 1; font-variant-numeric: tabular-nums; }
+.phone__notes { margin: 0; padding: 0; list-style: none; text-align: start; }
+
+.note { max-height: 0; margin-bottom: 0; overflow: hidden; opacity: 0; transform: translateY(-10px) scale(.96); transition: max-height .6s cubic-bezier(.2, .8, .2, 1), margin .6s, opacity .4s, transform .6s cubic-bezier(.2, .8, .2, 1); }
+.note.is-on { max-height: 140px; margin-bottom: 8px; opacity: 1; transform: none; }
+.note > div { display: flex; gap: 10px; align-items: flex-start; padding: 10px 12px; border-radius: 18px; background: rgba(245, 245, 245, .86); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); color: var(--navy); }
+.note__app { display: grid; place-items: center; flex: none; width: 30px; height: 30px; border-radius: 8px; color: var(--white); }
+.note__app svg { width: 18px; height: 18px; }
+.note__app--call { background: #E5484D; }
+.note__app--msg { background: var(--teal); }
+.note__app--rent { background: var(--orange); }
+.note__body { display: grid; gap: 1px; flex: 1; min-width: 0; font-size: 13px; line-height: 1.3; }
+.note__body strong { font-size: 14px; font-weight: 600; }
+.note__body > span:last-child { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.note__meta { display: flex; justify-content: space-between; font-size: 11px; color: var(--text-muted); }
+
+/* שיחה נכנסת על כל המסך */
+.phone__call {
+  position: absolute; inset: 0; z-index: 3; display: flex; flex-direction: column; align-items: center;
+  padding: 78px 22px 40px; text-align: center;
+  background: rgba(20, 24, 33, .62); -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px);
+  opacity: 0; transition: opacity .45s, transform .6s cubic-bezier(.2, .8, .2, 1);
+}
+.phone__call.is-on { opacity: 1; }
+.phone__call.is-off { opacity: 0; transform: translateY(-24px); }
+.phone__caller { margin: 0; font-size: 26px; font-weight: 600; }
+.phone__calling { margin: 4px 0 0; font-size: 14px; opacity: .8; }
+.phone__avatar { display: grid; place-items: center; width: 96px; height: 96px; margin: auto 0; border-radius: 50%; background: var(--teal); font-size: 40px; font-weight: 600; }
+.phone__call.is-on .phone__avatar { animation: phone-pulse 1.6s ease-out infinite; }
+.phone__actions { display: flex; justify-content: space-between; width: 100%; padding: 0 14px; }
+.phone__btn { display: grid; justify-items: center; gap: 6px; }
+.phone__btn svg { width: 60px; height: 60px; padding: 16px; border-radius: 50%; color: var(--white); }
+.phone__btn small { font-size: 12px; }
+.phone__btn--no svg { background: #E5484D; }
+.phone__btn--yes svg { background: #30A46C; }
+.phone__call.is-on .phone__btn--yes svg { animation: phone-shake 1.2s ease-in-out infinite; }
+
+@keyframes phone-pulse { 0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, .35); } 100% { box-shadow: 0 0 0 26px rgba(255, 255, 255, 0); } }
+@keyframes phone-shake { 0%, 50%, 100% { transform: rotate(0); } 10%, 30% { transform: rotate(-14deg); } 20%, 40% { transform: rotate(14deg); } }
+
+@media (max-width: 1024px) {
+  .pain__inner { gap: 40px; padding-top: 40px; padding-bottom: 40px; }
+  .phone { width: 272px; border-radius: 48px; }
+  .phone__screen { border-radius: 38px; }
+  .phone__clock { font-size: 56px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .note { max-height: none; margin-bottom: 8px; opacity: 1; transform: none; transition: none; }
+  .phone__call { display: none; }
+}

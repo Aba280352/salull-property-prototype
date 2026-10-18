@@ -1,0 +1,127 @@
+/* סלול ניהול נכסים: טוקנים, טיפוגרפיה וכפתורים. מקור: "דיזיין סיסטם - סלול ניהול נכסים.md". */
+
+@font-face { font-family: "Polin"; font-weight: 400; font-style: normal; font-display: swap; src: url("../fonts/Polin-Regular.woff2") format("woff2"); }
+@font-face { font-family: "Polin"; font-weight: 600; font-style: normal; font-display: swap; src: url("../fonts/Polin-Semibold.woff2") format("woff2"); }
+@font-face { font-family: "Polin"; font-weight: 700; font-style: normal; font-display: swap; src: url("../fonts/Polin-Bold.woff2") format("woff2"); }
+
+:root {
+  --font-main: "Polin", "Assistant", Arial, sans-serif;
+
+  /* צבעי המותג */
+  --teal: #406A6D;    /* דומיננטי, ורקע משני */
+  --orange: #D97F27;  /* הדגשות ו-CTA */
+  --navy: #273043;    /* רקע כהה, טקסט על בהיר */
+  --white: #FFFFFF;   /* רקע ראשי */
+  --grey: #F5F5F5;    /* רקע משני, כרטיסים על לבן */
+
+  /* משלימים (הצעה) */
+  --text-muted: #5D6473;
+  --line: rgba(39, 48, 67, .14);
+  --line-on-dark: rgba(255, 255, 255, .18);
+  --teal-hover: #365A5D;
+  --orange-hover: #C46F1D;
+
+  /* ריווחים */
+  --section-gap: 90px; --section-gap-related: 45px;
+  --gap-sm: 15px; --gap-md: 20px;
+  --side-pad: 20px;
+
+  /* צורות */
+  --radius: 12px; --radius-pill: 100px;
+
+  /* טיפוגרפיה: מובייל */
+  --h1: 42px; --h2: 36px; --h3: 30px; --h4: 26px; --h5: 22px;
+  --body: 18px; --note: 14px;
+}
+@media (min-width: 1025px) {
+  :root {
+    --h1: 120px; --h2: 72px; --h3: 60px; --h4: 48px; --h5: 24px;
+    --section-gap: 9vw; --section-gap-related: 4.5vw; --side-pad: 5vw;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; direction: rtl;
+  font-family: var(--font-main); font-weight: 400; font-size: var(--body); line-height: 1.3;
+  color: var(--navy); background: var(--white);
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; height: auto; }
+
+/* כותרות: Bold רק ל-H1 העצום, שאר הכותרות SemiBold */
+.h1, .h2, .h3, .h4, .h5 { margin: 0; line-height: 1; color: var(--navy); text-wrap: balance; }
+.h1 { font-size: var(--h1); font-weight: 700; }
+.h2 { font-size: var(--h2); font-weight: 600; }
+.h3 { font-size: var(--h3); font-weight: 600; }
+.h4 { font-size: var(--h4); font-weight: 600; }
+.h5 { font-size: var(--h5); font-weight: 600; }
+p, li { text-wrap: pretty; }
+.text-strong { font-weight: 600; }
+.note { font-size: var(--note); font-weight: 400; line-height: 1.3; color: var(--text-muted); }
+.accent-teal { color: var(--teal); }
+.accent-orange { color: var(--orange); }
+
+.section { padding: calc(var(--section-gap) / 2) var(--side-pad); }
+
+/* ---------- אפקט ריחוף משותף לכפתורים ולכרטיסים: עיגול שנולד בנקודת העכבר ומתמלא לרקע ולטקסט נגדיים ----------
+   העיגול הוא גרדיאנט רדיאלי על הרקע של האלמנט עצמו (רדיוס --r מונפש), ולא שכבה נפרדת, כדי שלא יהיה קצה בהיר בפינות המעוגלות. */
+@property --r { syntax: "<length>"; inherits: false; initial-value: 0px; }
+.btn, .card {
+  position: relative;
+  background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), var(--bg-h) calc(var(--r) - 1px), var(--bg) var(--r));
+  color: var(--fg);
+  transition: --r .65s cubic-bezier(.4, 0, .2, 1), color .5s cubic-bezier(.4, 0, .2, 1), border-color .5s cubic-bezier(.4, 0, .2, 1);
+}
+.btn:focus-visible, .card:focus-visible { --r: calc(var(--d, 800px) / 2 + 2px); color: var(--fg-h); border-color: var(--bd-h, transparent); }
+@media (hover: hover) {
+  .btn:hover, .card:hover { --r: calc(var(--d, 800px) / 2 + 2px); color: var(--fg-h); border-color: var(--bd-h, transparent); }
+}
+
+/* ---------- כפתורים: ריבוע מעוגל 12px, חץ קטן משמאל לטקסט ---------- */
+.btn {
+  --bg: var(--orange); --fg: var(--navy); --bd: var(--bg); --bg-h: var(--navy); --fg-h: var(--white); --bd-h: var(--bg-h);
+  display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+  --py: 14px; --px: 28px; min-height: 56px; padding: var(--py) var(--px); border: 1px solid var(--bd); border-radius: var(--radius);
+  font: 600 var(--body)/1.3 var(--font-main); text-decoration: none; white-space: nowrap; cursor: pointer;
+}
+.btn:focus-visible { outline: 2px solid var(--navy); outline-offset: 3px; }
+.btn__arrow { display: grid; place-items: center; flex: none; }
+.btn__arrow svg { width: 20px; height: 20px; }
+
+/* מילוי בלי מסגרת בכלל: ריפוד גדול ב-1px במקום המסגרת, כדי שהגודל זהה לכפתור מתאר */
+.btn--primary, .btn--secondary, .btn--white { border-width: 0; padding: calc(var(--py) + 1px) calc(var(--px) + 1px); }
+.btn--secondary { --bg: var(--teal); --fg: var(--white); --bd: var(--bg); --bg-h: var(--navy); --fg-h: var(--white); --bd-h: var(--bg-h); }
+.btn--outline { --bg: transparent; --fg: var(--navy); --bd: var(--navy); --bg-h: var(--navy); --fg-h: var(--white); --bd-h: var(--navy); }
+.btn--white { --bg: var(--white); --fg: var(--navy); --bd: var(--bg); --bg-h: var(--navy); --fg-h: var(--white); --bd-h: var(--bg-h); }
+.btn--white:focus-visible { outline-color: var(--white); }
+.btn--on-dark { --bg: transparent; --fg: var(--white); --bd: var(--white); --bg-h: var(--white); --fg-h: var(--navy); --bd-h: var(--white); }
+.btn--on-dark:focus-visible { outline-color: var(--white); }
+/* כפתור ראשי על רקע כהה: הריחוף מתמלא בלבן, כי כחול כהה היה נבלע ברקע */
+.on-dark .btn--primary { --bg-h: var(--white); --fg-h: var(--navy); }
+.on-dark .btn--primary:focus-visible { outline-color: var(--white); }
+
+/* ---------- כרטיסים: אותו אפקט, מתמלאים בטורקיז עם טקסט לבן ---------- */
+.card {
+  --bg: var(--grey); --fg: var(--navy); --bg-h: var(--teal); --fg-h: var(--white);
+  display: grid; gap: 14px; align-content: start; padding: 28px; border-radius: var(--radius);
+  color: var(--fg); text-decoration: none;
+}
+.card p { margin: 0; }
+.card .h5 { color: inherit; }
+.card .ico { width: 40px; height: 40px; color: var(--teal); transition: color .5s cubic-bezier(.4, 0, .2, 1); }
+.card__tag { justify-self: start; padding: 4px 12px; border-radius: var(--radius-pill); background: var(--teal); color: var(--white); font-size: var(--note); font-weight: 600; transition: background-color .5s, color .5s; }
+@media (hover: hover) {
+  .card:hover .ico { color: var(--white); }
+  .card:hover .card__tag { background: var(--grey); color: var(--navy); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn, .card, .card .ico, .card__tag { transition: none !important; }
+}
+
+/* גלילה חלקה (Lenis) */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }

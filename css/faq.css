@@ -1,0 +1,62 @@
+/* סלול ניהול נכסים: שאלות ותשובות. טופס בכרטיס כחול כהה מימין (נדבק בגלילה בדסקטופ), אקורדיונים משמאל. */
+.faq { padding: calc(var(--section-gap) / 2) var(--side-pad); background: var(--white); }
+.faq__inner { display: grid; gap: 40px; max-width: 1300px; margin: 0 auto; align-items: start; }
+@media (min-width: 1025px) {
+  .faq__inner { grid-template-columns: minmax(380px, 5fr) 7fr; gap: 5vw; }
+  .lead-card { position: sticky; top: calc(var(--header-h) + 24px); }
+}
+
+/* ---------- כרטיס הטופס ---------- */
+.lead-card { padding: 44px 36px 36px; border-radius: var(--radius); background: var(--navy); color: var(--white); text-align: center; }
+.lead-card__mark { display: block; width: 64px; height: auto; margin: 0 auto 20px; color: var(--white); }
+.lead-card__mark .mark__cut { fill: var(--navy); }
+.lead-card__title { margin: 0 0 12px; font-size: 34px; font-weight: 700; line-height: 1.15; color: var(--white); text-wrap: balance; }
+.lead-card__lead { margin: 0 0 28px; font-size: 16px; color: rgba(255, 255, 255, .8); }
+
+.lead-form { display: grid; gap: 12px; text-align: start; }
+.lead-form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.lead-form__field input, .lead-form__field select {
+  width: 100%; height: 52px; padding: 0 18px; border: 1px solid rgba(255, 255, 255, .18); border-radius: var(--radius);
+  background: rgba(255, 255, 255, .08); color: var(--white); font: 400 16px/1.2 var(--font-main);
+  direction: rtl; text-align: right; transition: border-color .3s, background-color .3s;
+}
+.lead-form__field input::placeholder { color: rgba(255, 255, 255, .65); }
+.lead-form__field select { appearance: none; cursor: pointer; background-image: none; }
+.lead-form__field select option { color: var(--navy); }
+.lead-form__field input:focus, .lead-form__field select:focus { outline: none; border-color: #8FB9BC; background: rgba(255, 255, 255, .12); }
+.lead-form__field input[aria-invalid="true"] { border-color: var(--orange); }
+.lead-form__submit { justify-self: stretch; margin-top: 8px; }
+.lead-form__error, .lead-form__success { margin: 4px 0 0; font-size: var(--note); text-align: center; }
+.lead-form__error { color: #F2B27A; }
+.lead-form__success { color: #8FB9BC; font-weight: 600; }
+
+/* ---------- אקורדיונים ---------- */
+.faq__title { margin: 0 0 32px; font-size: var(--h4); font-weight: 700; line-height: 1.15; color: var(--navy); text-wrap: balance; }
+.faq__list { display: grid; gap: 14px; }
+.qa { border: 1px solid var(--line); border-radius: var(--radius); background: var(--white); transition: border-color .3s, background-color .3s; interpolate-size: allow-keywords; }
+.qa[open] { border-color: rgba(64, 106, 109, .4); background: var(--grey); }
+.qa__q {
+  display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 22px 24px;
+  font-size: 18px; font-weight: 600; line-height: 1.35; color: var(--navy); cursor: pointer; list-style: none;
+}
+.qa__q::-webkit-details-marker { display: none; }
+.qa__q:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; border-radius: var(--radius); }
+.qa__chev { display: grid; place-items: center; flex: none; width: 34px; height: 34px; border-radius: 50%; background: var(--grey); color: var(--navy); transition: transform .4s, background-color .3s, color .3s; }
+.qa__chev svg { width: 22px; height: 22px; }
+.qa[open] .qa__chev { transform: rotate(180deg); background: var(--teal); color: var(--white); }
+.qa__a p { margin: 0; padding: 0 24px 22px; font-size: 16px; color: var(--text-muted); }
+
+/* פתיחה רכה בדפדפנים שתומכים */
+.qa::details-content { block-size: 0; overflow: clip; transition: block-size .45s cubic-bezier(.2, .8, .2, 1), content-visibility .45s allow-discrete; }
+.qa[open]::details-content { block-size: auto; }
+
+@media (max-width: 1024px) {
+  .lead-card { padding: 34px 20px 24px; }
+  .lead-card__title { font-size: 28px; }
+  .lead-form__row { grid-template-columns: 1fr; }
+  .qa__q { padding: 18px; font-size: 17px; }
+  .qa__a p { padding: 0 18px 18px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .qa::details-content, .qa__chev { transition: none; }
+}

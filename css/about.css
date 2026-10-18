@@ -1,0 +1,76 @@
+/* סלול ניהול נכסים: אודות. רקע אפור, כותרת במרכז, שלושה כרטיסים לבנים, ותמונת הצוות עומדת על קצה הסקשן עם "סלול" ענק בקו מתאר מאחור. */
+/* הרקע האפור דוהה ללבן בתחתית, יחד עם התמונה, כדי שהמעבר לסקשן הבא (לבן) לא ייראה חתוך */
+.about { padding: calc(var(--section-gap) / 2) var(--side-pad) 0; background: linear-gradient(var(--grey) 0%, var(--grey) 60%, var(--white) 100%); overflow: hidden; }
+
+.about__head { max-width: 760px; margin: 0 auto 48px; text-align: center; }
+.about__title { margin: 0 0 20px; font-size: var(--h4); font-weight: 700; line-height: 1.15; color: var(--navy); text-wrap: balance; }
+.about__lead { margin: 0 0 28px; }
+
+.about__cards { display: grid; gap: var(--gap-md); margin: 0; padding: 0; list-style: none; }
+@media (min-width: 1025px) { .about__cards { grid-template-columns: repeat(3, 1fr); } }
+.about-card { display: flex; gap: 20px; align-items: flex-start; padding: 28px; border-radius: var(--radius); background: var(--white); }
+.about-card__ico { display: grid; place-items: center; flex: none; width: 72px; height: 72px; border-radius: 50%; background: rgba(64, 106, 109, .1); color: var(--teal); }
+.about-card__ico svg { width: 36px; height: 36px; }
+.about-card__title { margin: 0 0 6px; font-size: var(--h5); font-weight: 600; line-height: 1.2; color: var(--navy); }
+.about-card p { margin: 0; font-size: 16px; color: var(--text-muted); }
+
+/* הצוות */
+.about__team { position: relative; max-width: 1100px; margin: 140px auto 0; }
+.about__team img { position: relative; z-index: 1; display: block; width: 100%; height: auto; -webkit-mask-image: linear-gradient(#000 55%, transparent 96%); mask-image: linear-gradient(#000 55%, transparent 96%); }
+/* "סלול ניהול נכסים" ענק מאחורי הדמויות: מילוי בצבע הרקע וקו אפרפר. רוב הגובה שלו מעל הראשים כדי שיהיה קריא, והראשים מכסים רק את החלק התחתון */
+.about__mark {
+  position: absolute; z-index: 0; left: 50%; top: -15%; transform: translateX(-50%);
+  font-size: min(12.5vw, 190px); font-weight: 700; line-height: 1; white-space: nowrap;
+  color: var(--grey); -webkit-text-stroke: 2px rgba(64, 106, 109, .35);
+  user-select: none; pointer-events: none;
+}
+
+@media (max-width: 1024px) {
+  .about__head { margin-bottom: 32px; }
+  .about-card { padding: 20px; }
+  .about-card__ico { width: 56px; height: 56px; }
+  .about-card__ico svg { width: 28px; height: 28px; }
+  .about__team { margin-top: 64px; }
+  .about__mark { top: -12%; -webkit-text-stroke-width: 1.5px; }
+}
+
+/* ---------- אזורים לחיצים על הצוות ---------- */
+.team-hot { position: absolute; z-index: 2; top: 0; bottom: 12%; display: flex; align-items: flex-end; justify-content: center; padding: 0 0 18px; border: 0; background: none; cursor: pointer; }
+.team-hot__tag {
+  display: inline-flex; flex-direction: column; align-items: center; gap: 2px; padding: 10px 18px; border-radius: var(--radius);
+  background: var(--navy); color: var(--white); font: 700 16px/1.2 var(--font-main);
+  opacity: 0; transform: translateY(8px); transition: opacity .35s, transform .35s cubic-bezier(.2, .8, .2, 1);
+}
+.team-hot__tag small { font-size: 13px; font-weight: 400; color: #8FB9BC; }
+.team-hot:focus-visible { outline: 2px solid var(--teal); outline-offset: -6px; border-radius: var(--radius); }
+.team-hot:focus-visible .team-hot__tag { opacity: 1; transform: none; }
+@media (hover: hover) { .team-hot:hover .team-hot__tag { opacity: 1; transform: none; } }
+/* במגע אין ריחוף: התגית מוצגת תמיד, קטנה */
+@media (hover: none) {
+  .team-hot { padding-bottom: 8px; }
+  .team-hot__tag { opacity: 1; transform: none; padding: 6px 10px; font-size: 13px; }
+  .team-hot__tag small { font-size: 11px; }
+}
+
+/* ---------- חלונית ---------- */
+.team-modal { width: min(880px, calc(100vw - 32px)); max-height: calc(100vh - 48px); padding: 0; border: 0; border-radius: var(--radius); background: var(--white); color: var(--navy); overflow: auto; }
+.team-modal::backdrop { background: rgba(39, 48, 67, .6); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }
+.team-modal[open] { animation: team-in .4s cubic-bezier(.2, .8, .2, 1); }
+.team-modal__close { position: sticky; top: 14px; z-index: 2; float: left; display: grid; place-items: center; width: 44px; height: 44px; margin: 14px 14px -58px; border: 0; border-radius: 50%; background: var(--grey); color: var(--navy); cursor: pointer; transition: background-color .3s, color .3s; }
+.team-modal__close:hover { background: var(--navy); color: var(--white); }
+.team-modal__close svg { width: 22px; height: 22px; }
+.team-modal__person { display: grid; }
+.team-modal__person[hidden] { display: none; }
+@media (min-width: 768px) { .team-modal__person { grid-template-columns: 300px 1fr; } }
+/* פורטרט אנכי חד שממלא את כל גובה החלונית, בלי שטח מת */
+.team-modal__photo { display: block; width: 100%; height: 100%; min-height: 100%; object-fit: cover; object-position: center 22%; background: var(--white); }
+@media (max-width: 767px) { .team-modal__photo { height: auto; aspect-ratio: 4 / 3; object-position: center 18%; } }
+.team-modal__body { padding: 36px 32px 32px; }
+.team-modal__name { margin: 0 0 6px; font-size: 32px; font-weight: 700; line-height: 1.1; }
+.team-modal__role { margin: 0 0 20px; font-size: 15px; font-weight: 600; color: var(--teal); }
+.team-modal__body > p:not(.team-modal__role) { margin: 0 0 14px; font-size: 16px; line-height: 1.6; color: var(--text-muted); }
+.team-modal__points { display: grid; gap: 12px; margin: 22px 0 0; padding: 20px 0 0; border-top: 1px solid var(--line); list-style: none; }
+.team-modal__points li { font-size: 15px; line-height: 1.5; color: var(--text-muted); }
+.team-modal__points strong { display: block; margin-bottom: 2px; font-size: 16px; color: var(--navy); }
+@keyframes team-in { from { opacity: 0; transform: translateY(16px) scale(.98); } }
+@media (prefers-reduced-motion: reduce) { .team-modal[open] { animation: none; } .team-hot__tag { transition: none; } }

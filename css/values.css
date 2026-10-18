@@ -1,0 +1,47 @@
+/* סלול ניהול נכסים: ערכים. קרוסלת פוקוס על רקע לבן עם כרטיסים אפורים:
+   הכרטיס הפעיל במרכז מלא וחד, השכנים מוקטנים ל-0.8, מטושטשים ושקופים. חיצים עגולים בטורקיז. */
+.values { padding: calc(var(--section-gap) / 2) 0; background: var(--white); overflow: hidden; }
+.values__head { max-width: 760px; margin: 0 auto 48px; padding: 0 var(--side-pad); text-align: center; }
+.values__title { margin: 0; font-size: var(--h4); font-weight: 700; line-height: 1.15; color: var(--navy); text-wrap: balance; }
+
+.focus { --w: min(38vw, 520px); --gap: 24px; position: relative; }
+.focus__track { position: relative; height: var(--h, 360px); touch-action: pan-y; cursor: grab; }
+.focus__track.is-drag { cursor: grabbing; }
+
+.focus__slide {
+  position: absolute; top: 0; left: 50%; display: flex; flex-direction: column; width: var(--w); min-height: 100%;
+  padding: 44px 40px; border-radius: var(--radius); background: var(--grey); color: var(--navy);
+  transform: translateX(calc(-50% + var(--x, 0px))) scale(.8); filter: blur(3px); opacity: .5;
+  transition: transform 1s cubic-bezier(.2, .8, .2, 1), filter 1s, opacity 1s;
+  user-select: none;
+}
+.focus__slide.is-active { transform: translateX(calc(-50% + var(--x, 0px))) scale(1); filter: none; opacity: 1; }
+.focus__slide.is-far { opacity: 0; pointer-events: none; }
+
+.focus__ico { display: grid; place-items: center; width: 64px; height: 64px; margin-bottom: 28px; border-radius: 50%; background: var(--teal); color: var(--white); }
+.focus__ico svg { width: 30px; height: 30px; }
+.focus__count { position: absolute; top: 48px; left: 40px; font-size: 14px; font-weight: 600; letter-spacing: .08em; color: var(--text-muted); font-variant-numeric: tabular-nums; }
+.focus__title { margin: 0 0 12px; font-size: 34px; font-weight: 700; line-height: 1.15; color: var(--navy); }
+.focus__text { margin: 0; font-size: 18px; color: var(--text-muted); }
+
+/* חיצים */
+.focus__nav { display: flex; justify-content: center; gap: 14px; margin-top: 32px; }
+.focus__btn {
+  display: grid; place-items: center; width: 56px; height: 56px; padding: 0; border: 0; border-radius: 50%;
+  background: var(--teal); color: var(--white); cursor: pointer; transition: background-color .4s, scale .4s;
+}
+.focus__btn svg { width: 26px; height: 26px; }
+.focus__btn:hover { background: var(--navy); scale: 1.1; }
+.focus__btn:focus-visible { outline: 2px solid var(--navy); outline-offset: 3px; }
+
+@media (max-width: 1024px) {
+  .focus { --w: 80vw; --gap: 12px; }
+  .focus__slide { padding: 32px 24px; }
+  .focus__count { top: 36px; left: 24px; }
+  .focus__title { font-size: 26px; }
+  .focus__text { font-size: 16px; }
+  .focus__btn { width: 48px; height: 48px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .focus__slide { transition: none; }
+}

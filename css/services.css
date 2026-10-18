@@ -1,0 +1,52 @@
+/* סלול ניהול נכסים: שירותים. 7 כרטיסי תמונה, רצועת טורקיז עם שם השירות בתחתית.
+   בריחוף הרצועה נפתחת לפאנל זכוכית כהה עם תיאור וכפתור. בדסקטופ גריד 4+3, במובייל קרוסלת החלקה עם הפאנל פתוח. */
+.services { padding: calc(var(--section-gap) / 2) var(--side-pad); background: var(--white); }
+.services__head { max-width: 760px; margin: 0 auto 48px; text-align: center; }
+.services__title { margin: 0 0 20px; font-size: var(--h4); font-weight: 700; line-height: 1.15; color: var(--navy); text-wrap: balance; }
+.services__lead { margin: 0; }
+
+.services__grid { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--gap-md); margin: 0; padding: 0; list-style: none; }
+
+.svc { position: relative; flex: 0 0 calc((100% - 3 * var(--gap-md)) / 4); aspect-ratio: 1 / 1.12; overflow: hidden; border-radius: var(--radius); background: var(--navy); }
+.svc__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .8s cubic-bezier(.2, .8, .2, 1); }
+
+.svc__panel {
+  position: absolute; bottom: 0; right: 0; width: calc(100% - 36px); padding: 16px 20px;
+  border-radius: 12px 0 0 0; background: var(--teal); color: var(--white);
+  transition: width .5s cubic-bezier(.2, .8, .2, 1), border-radius .5s, background-color .4s, padding .5s;
+}
+.svc__title { margin: 0; font-size: var(--h5); font-weight: 600; line-height: 1.2; color: var(--white); }
+.svc__more { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .5s cubic-bezier(.2, .8, .2, 1); }
+.svc__more > div { overflow: hidden; min-height: 0; }
+.svc__more p { margin: 10px 0 18px; font-size: 16px; line-height: 1.4; opacity: 0; transition: opacity .35s; }
+.svc__more .btn { opacity: 0; transition: opacity .35s; margin-bottom: 4px; }
+
+/* מצב פתוח: זכוכית כהה על התמונה כדי שהטקסט יהיה קריא */
+.svc:focus-within .svc__panel { width: 100%; border-radius: 0; padding: 22px 22px 20px; background-color: rgba(39, 48, 67, .6); -webkit-backdrop-filter: blur(14px) saturate(1.2); backdrop-filter: blur(14px) saturate(1.2); }
+.svc:focus-within .svc__more { grid-template-rows: 1fr; }
+.svc:focus-within .svc__more p, .svc:focus-within .svc__more .btn { opacity: 1; transition-delay: .15s; }
+@media (hover: hover) {
+  .svc:hover .svc__img { transform: scale(1.06); }
+  .svc:hover .svc__panel { width: 100%; border-radius: 0; padding: 22px 22px 20px; background-color: rgba(39, 48, 67, .6); -webkit-backdrop-filter: blur(14px) saturate(1.2); backdrop-filter: blur(14px) saturate(1.2); }
+  .svc:hover .svc__more { grid-template-rows: 1fr; }
+  .svc:hover .svc__more p, .svc:hover .svc__more .btn { opacity: 1; transition-delay: .15s; }
+}
+
+/* מובייל וטאבלט: קרוסלת החלקה, הפאנל תמיד פתוח */
+@media (max-width: 1024px) {
+  .services__head { margin-bottom: 32px; }
+  .services__grid {
+    flex-wrap: nowrap; justify-content: flex-start; overflow-x: auto; scroll-snap-type: x mandatory;
+    margin-inline: calc(var(--side-pad) * -1); padding: 0 var(--side-pad) 8px; scroll-padding-inline: var(--side-pad);
+    scrollbar-width: none;
+  }
+  .services__grid::-webkit-scrollbar { display: none; }
+  .svc { flex: 0 0 82%; max-width: 380px; scroll-snap-align: start; aspect-ratio: 1 / 1.25; }
+  .svc__panel { width: 100%; border-radius: 0; padding: 18px; background-color: rgba(39, 48, 67, .62); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
+  .svc__more { grid-template-rows: 1fr; }
+  .svc__more p, .svc__more .btn { opacity: 1; }
+  .svc__more p { font-size: 15px; margin: 8px 0 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .svc__img, .svc__panel, .svc__more, .svc__more p, .svc__more .btn { transition: none; }
+}

@@ -1,0 +1,59 @@
+/* סלול ניהול נכסים: הדר. לוגו מימין, תפריט באמצע, כפתור פעולה משמאל. רצועה לבנה. */
+:root { --header-h: 72px; --header-side: var(--side-pad); }
+@media (min-width: 1025px) { :root { --header-h: 88px; --header-side: 5vw; } }
+
+.site-header { position: sticky; top: 0; z-index: 100; background: var(--white); }
+.site-header__bar { display: flex; align-items: center; gap: 24px; height: var(--header-h); padding-inline: var(--header-side); }
+.site-header__logo { display: block; flex: none; line-height: 0; }
+.site-header__logo img { display: block; height: 48px; width: auto; }
+
+/* כפתור קטן בהדר */
+.btn--sm { --py: 10px; --px: 22px; min-height: 48px; font-size: 16px; }
+
+.site-nav__list { display: flex; align-items: center; margin: 0; padding: 0; list-style: none; }
+.site-nav a:not(.btn), .site-nav__more { position: relative; display: inline-flex; align-items: center; gap: 4px; padding: 8px 0; border: 0; background: none; cursor: pointer; font: 600 16px/1.3 var(--font-main); color: var(--navy); text-decoration: none; white-space: nowrap; transition: color .3s; }
+.site-nav a:not(.btn)::after, .site-nav__more::after { content: ""; position: absolute; inset-inline: 0; bottom: 2px; height: 2px; border-radius: 2px; background: var(--teal); transform: scaleX(0); transform-origin: right; transition: transform .35s cubic-bezier(.4, 0, .2, 1); }
+.site-nav a:not(.btn):hover, .site-nav__more:hover, .has-sub.is-open > .site-nav__more { color: var(--teal); }
+.site-nav a:not(.btn):hover::after, .site-nav__more:hover::after, .has-sub.is-open > .site-nav__more::after { transform: scaleX(1); }
+.site-nav a[aria-current="page"] { color: var(--teal); }
+.site-nav a:not(.btn):focus-visible, .site-nav__more:focus-visible, .site-header__burger:focus-visible { outline: 2px solid var(--navy); outline-offset: 4px; border-radius: 4px; }
+.site-nav__more svg { width: 20px; height: 20px; transition: transform .3s; }
+.has-sub.is-open .site-nav__more svg { transform: rotate(180deg); }
+.site-nav .site-nav__cta, .site-header__burger .i-close { display: none; }
+
+.site-header__burger { display: none; place-items: center; width: 48px; height: 48px; padding: 0; border: 1px solid var(--line); border-radius: var(--radius); background: var(--white); color: var(--navy); cursor: pointer; }
+.site-header__burger svg { width: 28px; height: 28px; display: block; }
+.site-header__burger[aria-expanded="true"] .i-menu { display: none; }
+.site-header__burger[aria-expanded="true"] .i-close { display: block; }
+
+/* דסקטופ */
+@media (min-width: 1025px) {
+  .site-nav { flex: 1; display: flex; justify-content: center; }
+  .site-nav__list { gap: clamp(18px, 2.2vw, 36px); }
+  .has-sub { position: relative; }
+  .site-nav__drop { position: absolute; top: 100%; inset-inline-start: -20px; padding-top: 14px; opacity: 0; visibility: hidden; transform: translateY(6px); transition: opacity .25s, transform .25s, visibility .25s; }
+  .has-sub:hover .site-nav__drop, .has-sub:focus-within .site-nav__drop, .has-sub.is-open .site-nav__drop { opacity: 1; visibility: visible; transform: none; }
+  .site-nav__sub { display: grid; min-width: 220px; margin: 0; padding: 8px; list-style: none; background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: 0 12px 32px rgba(39, 48, 67, .08); }
+  .site-nav__sub a { display: flex; padding: 10px 14px; border-radius: 8px; font-weight: 400; }
+  .site-nav__sub a:hover { background: var(--grey); }
+  .site-nav__sub a::after { display: none; }
+}
+
+/* מובייל וטאבלט */
+@media (max-width: 1024px) {
+  .site-header__bar { justify-content: space-between; }
+  .site-header__cta { display: none; }
+  .site-header__burger { display: grid; }
+  .site-nav { position: fixed; top: var(--header-h); inset-inline: 0; bottom: 0; display: flex; flex-direction: column; gap: 28px; padding: 12px var(--side-pad) 32px; overflow-y: auto; background: var(--white); opacity: 0; visibility: hidden; transform: translateY(-8px); transition: opacity .3s, transform .3s, visibility .3s; }
+  .site-nav.is-open { opacity: 1; visibility: visible; transform: none; }
+  .site-nav__list { flex-direction: column; align-items: stretch; }
+  .site-nav__list > li > a, .site-nav__sub a { display: flex; padding: 16px 0; border-bottom: 1px solid var(--line); font-size: var(--h5); font-weight: 600; }
+  .site-nav__more { display: none; }
+  .site-nav__drop { position: static; }
+  .site-nav__sub { margin: 0; padding: 0; list-style: none; }
+  .site-nav a:not(.btn)::after { display: none; }
+  .site-nav .site-nav__cta { display: inline-flex; align-self: flex-start; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .site-nav, .site-nav__drop, .site-nav a::after, .site-nav__more::after, .site-nav__more svg { transition: none !important; }
+}

@@ -1,0 +1,36 @@
+/* סלול ניהול נכסים: מסלולים. 3 כרטיסים, האמצעי מודגש בכחול כהה ומורם, עם תגית "הכי מבוקש" בטורקיז. */
+.plans { padding: calc(var(--section-gap) / 2) var(--side-pad); background: var(--white); }
+.plans__head { max-width: 760px; margin: 0 auto 56px; text-align: center; }
+.plans__title { margin: 0 0 20px; font-size: var(--h4); font-weight: 700; line-height: 1.15; color: var(--navy); text-wrap: balance; }
+.plans__lead { margin: 0; }
+
+.plans__grid { display: grid; gap: var(--gap-md); max-width: 1200px; margin: 0 auto; align-items: center; }
+@media (min-width: 1025px) { .plans__grid { grid-template-columns: repeat(3, 1fr); } }
+
+.plan { position: relative; display: flex; flex-direction: column; padding: 36px 32px; border-radius: var(--radius); background: var(--grey); color: var(--navy); }
+.plan__tier { margin: 0 0 6px; font-size: var(--note); font-weight: 600; letter-spacing: .04em; color: var(--teal); }
+.plan__title { margin: 0 0 10px; font-size: var(--h4); font-weight: 700; line-height: 1.1; color: inherit; }
+.plan__desc { margin: 0 0 24px; font-size: 16px; color: var(--text-muted); }
+.plan__plus { display: flex; align-items: center; gap: 8px; margin: 0 0 14px; font-size: 15px; font-weight: 600; }
+.plan__plus svg { width: 18px; height: 18px; color: var(--teal); }
+
+.plan__list { display: grid; gap: 12px; margin: 0 0 32px; padding: 24px 0 0; list-style: none; border-top: 1px solid var(--line); }
+.plan__list li { display: flex; align-items: flex-start; gap: 10px; font-size: 16px; line-height: 1.35; }
+.plan__check { display: grid; place-items: center; flex: none; width: 22px; height: 22px; margin-top: 1px; border-radius: 50%; background: var(--teal); color: var(--white); }
+.plan__check svg { width: 14px; height: 14px; }
+.plan__cta { align-self: flex-start; margin-top: auto; }
+
+/* המסלול המודגש */
+.plan--featured { padding-block: 52px; background: var(--navy); color: var(--white); box-shadow: 0 30px 60px -24px rgba(39, 48, 67, .45); }
+.plan--featured .plan__tier { color: #8FB9BC; }
+.plan--featured .plan__desc { color: rgba(255, 255, 255, .78); }
+.plan--featured .plan__list { border-top-color: var(--line-on-dark); }
+.plan--featured .plan__plus svg { color: #8FB9BC; }
+.plan__badge { position: absolute; top: 20px; left: 20px; margin: 0; padding: 6px 14px; border-radius: var(--radius-pill); background: var(--teal); color: var(--white); font-size: var(--note); font-weight: 600; }
+
+@media (max-width: 1024px) {
+  .plans__head { margin-bottom: 32px; }
+  .plan { padding: 28px 22px; }
+  .plan--featured { padding-block: 36px; }
+  .plan__title { font-size: 32px; }
+}

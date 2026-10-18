@@ -1,0 +1,47 @@
+/* סלול ניהול נכסים: מסך פתיחה. מסגרת וידאו מעוגלת מתחת להדר, טקסט מימין על שכבת הצללה. */
+.hero { --hero-inset: 12px; padding: 0 var(--hero-inset) var(--hero-inset); background: var(--white); }
+@media (min-width: 1025px) { .hero { --hero-inset: 16px; } }
+
+.hero__frame {
+  position: relative; isolation: isolate; overflow: hidden;
+  display: flex; align-items: flex-end;
+  min-height: max(600px, calc(100svh - var(--header-h) - var(--hero-inset)));
+  border-radius: 12px;
+  /* רקע זמני עד שהסרטון מוכן */
+  background: linear-gradient(135deg, var(--teal) 0%, var(--navy) 100%);
+}
+.hero__media { border-radius: 12px; position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; }
+.hero__shade {
+  position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    linear-gradient(to left, rgba(39, 48, 67, .72) 0%, rgba(39, 48, 67, .38) 50%, rgba(39, 48, 67, .08) 100%),
+    linear-gradient(to top, rgba(39, 48, 67, .55) 0%, rgba(39, 48, 67, 0) 45%);
+}
+
+/* התוכן מיושר לקו של הלוגו בהדר */
+.hero__content {
+  display: grid; justify-items: start; width: 100%;
+  padding: 48px calc(var(--side-pad) - var(--hero-inset)) calc(var(--section-gap-related));
+  color: var(--white);
+}
+.hero__kicker { margin: 0 0 var(--gap-md); padding: 8px 16px; border: 1px solid rgba(255, 255, 255, .6); border-radius: var(--radius); font-size: 16px; font-weight: 600; }
+.hero__title { margin: 0; max-width: 1100px; font-size: min(var(--h1), 10.5vh, 8vw); line-height: 1; color: var(--white); text-wrap: balance; }
+.hero__title-light, .hero__title-bold { display: block; }
+.hero__title-light { font-weight: 400; }
+.hero__title-bold { font-weight: 700; }
+.hero__lead { max-width: 560px; margin: 24px 0 32px; }
+
+.hero__stats { display: flex; flex-wrap: wrap; gap: 20px 64px; margin: 48px 0 0; padding: 0; list-style: none; }
+.hero__stats li { display: grid; gap: 6px; }
+.hero__stat-num { font-size: var(--h4); font-weight: 600; line-height: 1; font-variant-numeric: tabular-nums; }
+.hero__stat-label { font-size: 18px; }
+
+@media (max-width: 1024px) {
+  .hero__frame { min-height: max(560px, calc(100svh - var(--header-h) - var(--hero-inset))); }
+  .hero__shade { background: linear-gradient(to top, rgba(39, 48, 67, .8) 0%, rgba(39, 48, 67, .35) 70%, rgba(39, 48, 67, .15) 100%); }
+  .hero__content { padding-top: 32px; padding-bottom: 32px; }
+  .hero__title { font-size: var(--h1); }
+  .hero__lead { margin: 16px 0 24px; }
+  .hero__stats { gap: 16px 32px; margin-top: 32px; }
+  .hero__stat-label { font-size: 16px; }
+}

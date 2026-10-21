@@ -60,3 +60,9 @@
 @media (prefers-reduced-motion: reduce) {
   .qa::details-content, .qa__chev { transition: none; }
 }
+
+/* גרסה 2: סמל המפתח רחב, אז הכרטיס מקבל אותו ברוחב גדול יותר */
+.lead-card__mark--key { width: 128px; }
+
+.lead-card__mark--tower { width: 30px; }
+.lead-card__mark--full { width: 170px; margin-bottom: 28px; }

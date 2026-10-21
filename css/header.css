@@ -57,3 +57,10 @@
 @media (prefers-reduced-motion: reduce) {
   .site-nav, .site-nav__drop, .site-nav a::after, .site-nav__more::after, .site-nav__more svg { transition: none !important; }
 }
+
+/* גרסה 2: הלוגו האופקי החדש רחב יותר, במובייל הוא מעט נמוך יותר */
+@media (max-width: 1024px) { .site-header__logo img { height: 40px; } }
+
+/* הלוגו הסופי (סלול עם מגדל) כולל את "ניהול נכסים", אז הוא מקבל יותר גובה */
+.site-header__logo img { height: 64px; }
+@media (max-width: 1024px) { .site-header__logo img { height: 52px; } }

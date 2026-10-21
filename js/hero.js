@@ -2,7 +2,7 @@
 (() => {
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  const video = document.querySelector('.hero__media');
+  const video = document.querySelector('video.hero__media');
   if (video) {
     if (reduce) {
       video.removeAttribute('autoplay');

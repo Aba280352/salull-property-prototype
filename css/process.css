@@ -73,3 +73,11 @@
 @media (prefers-reduced-motion: reduce) {
   .trip, .trip__eyebrow, .trip__mark, .mark__cut { transition: none; }
 }
+
+/* גרסה 2: סמל המפתח בפינת הכרטיס */
+.trip__mark--key { width: 78px; }
+@media (max-width: 1024px) { .trip__mark--key { width: 62px; } }
+
+/* המגדל בפינת הכרטיס */
+.trip__mark--tower { width: 22px; }
+@media (max-width: 1024px) { .trip__mark--tower { width: 18px; } }

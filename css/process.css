@@ -79,5 +79,5 @@
 @media (max-width: 1024px) { .trip__mark--key { width: 62px; } }
 
 /* המגדל בפינת הכרטיס */
-.trip__mark--tower { width: 22px; }
-@media (max-width: 1024px) { .trip__mark--tower { width: 18px; } }
+.trip__mark--tower { width: 34px; }
+@media (max-width: 1024px) { .trip__mark--tower { width: 28px; } }

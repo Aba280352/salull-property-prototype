@@ -37,7 +37,6 @@
 .hero__stats li { display: grid; gap: 8px; align-content: start; }
 .hero__stat-num { display: flex; align-items: center; gap: 8px; min-height: 44px; font-size: var(--h4); font-weight: 600; line-height: 1; font-variant-numeric: tabular-nums; }
 .hero__stat-num svg { width: 40px; height: 40px; }
-.hero__stat-star { font-size: .8em; color: #F4B400; }
 .hero__stat-label { font-size: 18px; }
 
 @media (max-width: 1024px) {

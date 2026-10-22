@@ -24,24 +24,31 @@
   padding: 48px calc(var(--side-pad) - var(--hero-inset)) calc(var(--section-gap-related));
   color: var(--white);
 }
-.hero__kicker { margin: 0 0 var(--gap-md); padding: 8px 16px; border: 1px solid rgba(255, 255, 255, .6); border-radius: var(--radius); font-size: 16px; font-weight: 600; }
+/* שאלת הפתיחה בלי מסגרת, כשורה מעל הכותרת */
+.hero__kicker { margin: 0 0 12px; font-size: var(--h5); font-weight: 600; line-height: 1.3; }
 .hero__title { margin: 0; max-width: 1100px; font-size: min(var(--h1), 10.5vh, 8vw); line-height: 1; color: var(--white); text-wrap: balance; }
 .hero__title-light, .hero__title-bold { display: block; }
 .hero__title-light { font-weight: 400; }
 .hero__title-bold { font-weight: 700; }
-.hero__lead { max-width: 560px; margin: 24px 0 32px; }
+.hero__lead { max-width: 600px; margin: 24px 0 32px; }
+.hero__lead strong { display: block; margin-bottom: 4px; font-weight: 600; }
 
 .hero__stats { display: flex; flex-wrap: wrap; gap: 20px 64px; margin: 48px 0 0; padding: 0; list-style: none; }
-.hero__stats li { display: grid; gap: 6px; }
-.hero__stat-num { font-size: var(--h4); font-weight: 600; line-height: 1; font-variant-numeric: tabular-nums; }
+.hero__stats li { display: grid; gap: 8px; align-content: start; }
+.hero__stat-num { display: flex; align-items: center; gap: 8px; min-height: 44px; font-size: var(--h4); font-weight: 600; line-height: 1; font-variant-numeric: tabular-nums; }
+.hero__stat-num svg { width: 40px; height: 40px; }
+.hero__stat-star { font-size: .8em; color: #F4B400; }
 .hero__stat-label { font-size: 18px; }
 
 @media (max-width: 1024px) {
   .hero__frame { min-height: max(560px, calc(100svh - var(--header-h) - var(--hero-inset))); }
   .hero__shade { background: linear-gradient(to top, rgba(39, 48, 67, .8) 0%, rgba(39, 48, 67, .35) 70%, rgba(39, 48, 67, .15) 100%); }
   .hero__content { padding-top: 32px; padding-bottom: 32px; }
-  .hero__title { font-size: var(--h1); }
+  /* בנייד הכותרת קטנה מעט, כדי ש"ניהול נכסים מקצועי," ייכנס בשורה אחת ולא תישאר מילה לבד */
+  .hero__title { font-size: min(var(--h1), 9.6vw); }
   .hero__lead { margin: 16px 0 24px; }
   .hero__stats { gap: 16px 32px; margin-top: 32px; }
   .hero__stat-label { font-size: 16px; }
+  .hero__stat-num { min-height: 34px; }
+  .hero__stat-num svg { width: 30px; height: 30px; }
 }

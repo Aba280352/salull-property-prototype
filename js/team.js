@@ -1,22 +1,19 @@
-/* סלול ניהול נכסים: צוות באודות. לחיצה על אחד מהשלושה בתמונה פותחת חלונית עם הביו שלו.
-   נסגרת בכפתור, ב-Escape או בלחיצה על הרקע, והמיקוד חוזר לאדם שנלחץ. */
+/* סלול ניהול נכסים: צוות באודות. כל שורה בזיגזג נחשפת כשהיא נכנסת למסך.
+   בלי JS או למי שביקש פחות תנועה הכול פשוט מוצג. */
 (() => {
-  const dialog = document.querySelector('.team-modal');
-  if (!dialog || typeof dialog.showModal !== 'function') return;
-  const people = [...dialog.querySelectorAll('.team-modal__person')];
-  let opener = null;
-
-  document.querySelectorAll('.team-hot').forEach((btn) => btn.addEventListener('click', () => {
-    opener = btn;
-    people.forEach((p) => { p.hidden = p.dataset.person !== btn.dataset.person; });
-    dialog.showModal();
-    dialog.scrollTop = 0;
-    if (window.salullLenis) window.salullLenis.stop();
-  }));
-  dialog.querySelector('.team-modal__close').addEventListener('click', () => dialog.close());
-  dialog.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); });
-  dialog.addEventListener('close', () => {
-    if (window.salullLenis) window.salullLenis.start();
-    if (opener) opener.focus();
-  });
+  const rows = document.querySelectorAll('.crew__row');
+  if (!rows.length || !('IntersectionObserver' in window)) return;
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    rows.forEach((r) => r.classList.add('is-in'));
+    return;
+  }
+  document.documentElement.classList.add('crew-anim');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (!e.isIntersecting) return;
+      e.target.classList.add('is-in');
+      io.unobserve(e.target);
+    });
+  }, { rootMargin: '0px 0px -20% 0px' });
+  rows.forEach((r) => io.observe(r));
 })();

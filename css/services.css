@@ -32,7 +32,7 @@
   .svc:hover .svc__more p, .svc:hover .svc__more .btn { opacity: 1; transition-delay: .15s; }
 }
 
-/* מובייל וטאבלט: גריד של שני טורים. לחיצה על כרטיס פותחת אותו לרוחב מלא עם אותו פאנל זכוכית כמו בריחוף בדסקטופ */
+/* מובייל וטאבלט: גריד של שני טורים (בטלפון טור אחד). לחיצה על כרטיס פותחת אותו לרוחב מלא עם אותו פאנל זכוכית כמו בריחוף בדסקטופ */
 @media (max-width: 1024px) {
   .services__head { margin-bottom: 32px; }
   .services__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-flow: dense; gap: 12px; }
@@ -51,6 +51,14 @@
 }
 @media (min-width: 640px) and (max-width: 1024px) {
   .svc.is-open { aspect-ratio: 2 / 1.1; }
+}
+/* טלפון: כרטיס אחד בכל שורה, אחד מתחת לשני */
+@media (max-width: 639px) {
+  .services__grid { grid-template-columns: 1fr; gap: 14px; }
+  .svc, .services__grid:not(.has-open) .svc:last-child:nth-child(odd) { aspect-ratio: 4 / 3; }
+  .svc.is-open { aspect-ratio: 1 / 1; }
+  .svc__panel { padding: 14px 18px; }
+  .svc__title { font-size: var(--h5); }
 }
 @media (prefers-reduced-motion: reduce) {
   .svc__img, .svc__panel, .svc__more, .svc__more p, .svc__more .btn { transition: none; }

@@ -25,19 +25,21 @@
   color: var(--white);
 }
 /* שאלת הפתיחה בלי מסגרת, כשורה מעל הכותרת */
-.hero__kicker { margin: 0 0 12px; font-size: var(--h5); font-weight: 600; line-height: 1.3; }
+.hero__kicker { margin: 0 0 12px; font-size: 20px; font-weight: 400; line-height: 1.3; }
 .hero__title { margin: 0; max-width: 1100px; font-size: min(var(--h1), 10.5vh, 8vw); line-height: 1; color: var(--white); text-wrap: balance; }
 .hero__title-light, .hero__title-bold { display: block; }
 .hero__title-light { font-weight: 400; }
 .hero__title-bold { font-weight: 700; }
 .hero__lead { max-width: 600px; margin: 24px 0 32px; }
-.hero__lead strong { display: block; margin-bottom: 4px; font-weight: 600; }
+.hero__lead strong { display: block; margin-bottom: 4px; font-weight: 400; }
 
-.hero__stats { display: flex; flex-wrap: wrap; gap: 20px 64px; margin: 48px 0 0; padding: 0; list-style: none; }
-.hero__stats li { display: grid; gap: 8px; align-content: start; }
-.hero__stat-num { display: flex; align-items: center; gap: 8px; min-height: 44px; font-size: var(--h4); font-weight: 600; line-height: 1; font-variant-numeric: tabular-nums; }
-.hero__stat-num svg { width: 40px; height: 40px; }
-.hero__stat-label { font-size: 18px; }
+/* אמינות: גוגל בשורה משלו, ומתחתיו דוח חודשי ומענה מהיר זה לצד זה */
+.hero__stats { display: grid; grid-template-columns: repeat(2, max-content); gap: 24px 56px; margin: 40px 0 0; padding: 0; list-style: none; }
+.hero__stats li { display: grid; gap: 8px; align-content: start; justify-items: start; }
+.hero__stats li:first-child { grid-column: 1 / -1; }
+.hero__stat-num { display: flex; line-height: 1; }
+.hero__stat-num svg { width: 32px; height: 32px; }
+.hero__stat-label { font-size: 17px; }
 
 @media (max-width: 1024px) {
   .hero__frame { min-height: max(560px, calc(100svh - var(--header-h) - var(--hero-inset))); }
@@ -46,8 +48,9 @@
   /* בנייד הכותרת קטנה מעט, כדי ש"ניהול נכסים מקצועי," ייכנס בשורה אחת ולא תישאר מילה לבד */
   .hero__title { font-size: min(var(--h1), 9.6vw); }
   .hero__lead { margin: 16px 0 24px; }
-  .hero__stats { gap: 16px 32px; margin-top: 32px; }
-  .hero__stat-label { font-size: 16px; }
-  .hero__stat-num { min-height: 34px; }
-  .hero__stat-num svg { width: 30px; height: 30px; }
+  .hero__kicker { font-size: 17px; margin-bottom: 8px; }
+  .hero__lead { line-height: 1.6; }
+  .hero__stats { gap: 20px 40px; margin-top: 28px; }
+  .hero__stat-label { font-size: 15px; }
+  .hero__stat-num svg { width: 26px; height: 26px; }
 }

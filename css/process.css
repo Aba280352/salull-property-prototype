@@ -62,11 +62,12 @@
 
 @media (max-width: 1024px) {
   .process__head { margin-bottom: 32px; }
-  .trip { width: 100%; margin-top: 96px; padding: 34px 22px 18px; }
+  /* ריווח עליון גדול יותר: הנעץ העגול חוצה את קצה הכרטיס, ובמסכים צרים הוא היה נצמד לשורת "סלול · תהליך העבודה" */
+  .trip { width: 100%; margin-top: 96px; padding: 52px 22px 18px; }
   .trip--left { margin-inline-start: 0; }
   .trip__num { font-size: 56px; }
   .trip__title { font-size: 24px; }
-  .trip__mark { top: 30px; left: 22px; width: 38px; }
+  .trip__mark { top: 50px; left: 22px; width: 38px; }
   .journey__stamp { margin: 64px 0; }
   .stamp__name { font-size: 19px; }
 }

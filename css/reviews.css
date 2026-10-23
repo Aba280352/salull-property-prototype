@@ -33,6 +33,8 @@
   display: grid; place-items: center; flex: none; width: 44px; height: 44px; border-radius: 50%;
   background: var(--teal); color: var(--white); font-size: 18px; font-weight: 700; line-height: 1;
 }
+.review__avatar { overflow: hidden; }
+.review__avatar img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .review__name { margin: 0; flex: 1; font-size: var(--body); font-weight: 600; line-height: 1.2; color: var(--navy); }
 .review__g { width: 22px; height: 22px; flex: none; }
 .review__rating { display: flex; align-items: center; gap: 8px; }

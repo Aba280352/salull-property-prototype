@@ -48,8 +48,9 @@
     // חיצים: כרטיס אחד בכל לחיצה. ב-RTL "הבא" מגיע משמאל, ולכן השורה זזה ימינה
     var step = function () { return (originals[0] ? originals[0].getBoundingClientRect().width : 320) + gap(); };
     var prev = root.querySelector('.reviews__nav--prev'), next = root.querySelector('.reviews__nav--next');
-    if (prev) prev.addEventListener('click', function () { nudge -= step(); });
-    if (next) next.addEventListener('click', function () { nudge += step(); });
+    // בפחות תנועה השורה נגללת ידנית, אז החיצים גוללים אותה
+    if (prev) prev.addEventListener('click', function () { if (reduce) view.scrollBy({ left: step() }); else nudge -= step(); });
+    if (next) next.addEventListener('click', function () { if (reduce) view.scrollBy({ left: -step() }); else nudge += step(); });
 
     var frame = function (t) {
       var dt = last ? Math.min(0.1, (t - last) / 1000) : 0; last = t;

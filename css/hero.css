@@ -46,7 +46,9 @@
 @media (max-width: 1024px) {
   .hero__frame { min-height: max(560px, calc(100svh - var(--header-h) - var(--hero-inset))); }
   /* מסכה כהה מלמטה עד אמצע התמונה, כדי שהטקסט יהיה קריא והבניינים והים יישארו נקיים למעלה */
-  .hero__shade { background: linear-gradient(to top, rgba(39, 48, 67, .95) 0%, rgba(39, 48, 67, .82) 40%, rgba(39, 48, 67, .5) 60%, rgba(39, 48, 67, .15) 80%, rgba(39, 48, 67, 0) 100%); }
+  /* בטלפונים גבוהים הכותרת יושבת על שמי השקיעה הבהירים, אז המסכה עולה גבוה יותר ונשארת כהה מאחורי הכותרת */
+  .hero__shade { background: linear-gradient(to top, rgba(39, 48, 67, .95) 0%, rgba(39, 48, 67, .85) 40%, rgba(39, 48, 67, .72) 60%, rgba(39, 48, 67, .55) 78%, rgba(39, 48, 67, .25) 100%); }
+  .hero__kicker, .hero__title { text-shadow: 0 2px 18px rgba(39, 48, 67, .5); }
   .hero__content { padding-top: 32px; padding-bottom: 32px; }
   /* בנייד הכותרת קטנה מעט, כדי ש"ניהול נכסים מקצועי," ייכנס בשורה אחת ולא תישאר מילה לבד */
   .hero__title { font-size: min(var(--h1), 9.6vw); }

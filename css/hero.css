@@ -14,7 +14,7 @@
 .hero__shade {
   position: absolute; inset: 0; z-index: -1; pointer-events: none;
   background:
-    linear-gradient(to left, rgba(39, 48, 67, .72) 0%, rgba(39, 48, 67, .38) 50%, rgba(39, 48, 67, .08) 100%),
+    linear-gradient(to left, rgba(39, 48, 67, .82) 0%, rgba(39, 48, 67, .5) 45%, rgba(39, 48, 67, .12) 100%),
     linear-gradient(to top, rgba(39, 48, 67, .8) 0%, rgba(39, 48, 67, .35) 35%, rgba(39, 48, 67, 0) 65%);
 }
 
@@ -44,9 +44,7 @@
 @media (max-width: 1024px) {
   .hero__frame { min-height: max(560px, calc(100svh - var(--header-h) - var(--hero-inset))); }
   /* מסכה כהה מלמטה עד אמצע התמונה, כדי שהטקסט יהיה קריא והבניינים והים יישארו נקיים למעלה */
-  .hero__shade { background: linear-gradient(to top, rgba(39, 48, 67, .95) 0%, rgba(39, 48, 67, .8) 35%, rgba(39, 48, 67, .3) 62%, rgba(39, 48, 67, 0) 85%); }
-  /* בנייד רואים את הבניינים שעל המצוק ואת הים לידם */
-  .hero__media { object-position: 22% center; }
+  .hero__shade { background: linear-gradient(to top, rgba(39, 48, 67, .95) 0%, rgba(39, 48, 67, .82) 40%, rgba(39, 48, 67, .5) 60%, rgba(39, 48, 67, .15) 80%, rgba(39, 48, 67, 0) 100%); }
   .hero__content { padding-top: 32px; padding-bottom: 32px; }
   /* בנייד הכותרת קטנה מעט, כדי ש"ניהול נכסים מקצועי," ייכנס בשורה אחת ולא תישאר מילה לבד */
   .hero__title { font-size: min(var(--h1), 9.6vw); }

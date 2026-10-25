@@ -7,7 +7,8 @@
   <title>ניהול נכסים מקצועי, שקוף ואמין | סלול ניהול נכסים</title>
   <meta name="description" content="ניהול נכסים מקצועי, שקוף ואמין: שוכרים איכותיים, מקסום השכירות ותחזוקה שוטפת. השוכרים מדברים איתנו, ואתם מקבלים שכירות ודוח חודשי ברור.">
   <link rel="icon" href="img/logo-mark.svg" type="image/svg+xml">
-  <link rel="preload" as="image" href="img/hero.webp" imagesrcset="img/hero-1200.webp 1200w, img/hero.webp 2400w" imagesizes="100vw" fetchpriority="high">
+  <link rel="preload" as="image" href="img/hero-mobile.webp" media="(max-width: 767px)" fetchpriority="high">
+  <link rel="preload" as="image" href="img/hero.webp" imagesrcset="img/hero-1200.webp 1200w, img/hero.webp 1672w" imagesizes="100vw" media="(min-width: 768px)" fetchpriority="high">
   <link rel="preload" href="fonts/Polin-Regular.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/Polin-Semibold.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/tokens.css">
@@ -73,7 +74,11 @@
   <main>
     <section class="hero on-dark" aria-labelledby="hero-title">
       <div class="hero__frame">
-        <img class="hero__media" src="img/hero.webp" srcset="img/hero-1200.webp 1200w, img/hero.webp 2400w" sizes="100vw" width="2400" height="1357" alt="" fetchpriority="high" decoding="async">
+        <!-- תמונה לרוחב במחשב, ותמונה לגובה במובייל (שתיהן מ-ChatGPT, 25.10.2026) -->
+        <picture>
+          <source media="(max-width: 767px)" srcset="img/hero-mobile.webp" width="941" height="1672">
+          <img class="hero__media" src="img/hero.webp" srcset="img/hero-1200.webp 1200w, img/hero.webp 1672w" sizes="100vw" width="1672" height="941" alt="" fetchpriority="high" decoding="async">
+        </picture>
         <div class="hero__shade" aria-hidden="true"></div>
 
         <div class="hero__content">
@@ -870,7 +875,7 @@
   </main>
   <footer class="site-footer">
     <div class="footer__frame">
-      <img class="footer__bg" src="img/hero-1200.webp" srcset="img/hero-1200.webp 1200w, img/hero.webp 2400w" sizes="100vw" alt="" width="2400" height="1358" loading="lazy">
+      <img class="footer__bg" src="img/hero-1200.webp" srcset="img/hero-1200.webp 1200w, img/hero.webp 1672w" sizes="100vw" alt="" width="1672" height="941" loading="lazy">
       <div class="footer__grid" aria-hidden="true"></div>
       <div class="footer__giant footer__giant--logo" aria-hidden="true"><svg viewBox="-2 458 502 212" focusable="false"><path d="M381.367 515.648C409.266 514.797 440.555 512.594 463.453 531.867C494.227 557.758 496.43 612.984 470.656 643.07C457.914 657.953 442.555 664.18 423.398 665.664C414.984 666.047 407.008 665.352 398.937 662.859C381.82 657.414 367.594 645.328 359.461 629.305C342.984 597.156 350.023 548.32 384.68 530.812C373.609 531 361.789 531.781 350.719 532.414L350.75 516.922L381.367 515.648ZM429.609 656.516C443.281 651.648 454.539 642.703 460.109 629.195C478.031 585.742 466.883 524.844 409.062 529.516C397.117 532.164 388.398 537.492 381.891 548.234C359.141 585.828 371.977 665.523 429.609 656.516Z" fill="currentColor"/><path d="M228.531 462.344C230.242 468.711 228.875 508.906 228.828 517.68C261.563 517.07 296.328 517.633 329.219 517.633C322.813 532.664 317.703 554.641 315.742 570.992C309.555 622.617 292.055 653.703 238.063 665.18C237.172 662.453 236.078 660.891 236.727 658.656C240.633 657.141 244.508 655.555 248.36 653.914C291.336 635.297 289.102 599.43 297.797 559.086C300.297 547.492 303.063 538.75 307.438 527.766C275.328 527.383 242.32 527.719 210.151 527.711C210.271 507.789 211.438 487.875 207.384 468.43C214.456 466.477 221.507 464.453 228.531 462.344Z" fill="currentColor"/><path d="M21.446 462.336C22.8913 464.117 22.1562 511.367 22.1296 517.648L123.076 517.641C118.801 529.148 115.364 540.945 112.79 552.945C107.809 577.188 106.622 605.227 93.3468 626.539C78.4257 650.484 57.0882 659.008 31.2296 665.445C30.1952 662.664 30.0343 662.359 29.6031 659.477C30.8163 658.031 42.3999 653.961 45.3554 652.649C83.271 635.813 83.8984 600.383 90.689 565.211C93.096 552.414 96.7382 539.875 101.566 527.781L3.7335 527.703C3.77803 507.875 4.9499 487.648 0.51709 468.414L21.446 462.336Z" fill="currentColor"/><path d="M155.104 517.617C160.708 517.516 171.422 516.898 176.55 518.477C183.258 525.625 181.23 566.742 181.255 578.148L181.342 663.367C176.395 663.969 167.704 663.633 162.451 663.586L162.503 578.078C162.514 558.352 165.468 534.852 155.104 517.617Z" fill="currentColor"/></svg></div>
 

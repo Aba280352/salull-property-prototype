@@ -91,3 +91,9 @@
 @media (prefers-reduced-motion: reduce) {
   .crew-anim .crew__frame, .crew-anim .crew__frame img, .crew-anim .crew__media::before, .crew-anim .crew__badge, .crew-anim .crew__body > * { transition: none; }
 }
+
+/* מובייל: התמונה זזה שמאלה כדי שהמסגרת הטורקיז תיגמר בקו התוכן, מיושרת למספרים מעל ומתחת */
+@media (max-width: 767px) {
+  .crew__media { justify-self: end; }
+  .crew__badge, .crew__row--alt .crew__badge { left: 12px; }
+}

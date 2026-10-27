@@ -61,3 +61,10 @@
 
 /* גרסה 2: ה"סלול" הענק הוא הלוגו עם המגדל, באותו צבע שקוף */
 .footer__giant--logo svg { display: block; width: min(76vw, 1180px); height: auto; margin: 0 auto; }
+
+/* מובייל: בלי קווי הגריד, וקישורי התקנון בשורה אחת גם בטלפונים צרים */
+@media (max-width: 767px) { .footer__grid { display: none; } }
+@media (max-width: 389px) {
+  .footer__bar { padding-inline: 12px; }
+  .footer__bar p:first-child { font-size: 14px; }
+}
